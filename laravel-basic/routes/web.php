@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +40,17 @@ Route::get('/articles/create', function () {
 
 Route::post('/articles', function (Request $request) {
     //비어있지않고, 문자열이고, 255자를 넘으면 안된다는 규칙을 적용
-    $request->validate([
+    $input = $request->validate([
         'body' => ['required', 'string', 'max : 255'],
     ]);
+    // querybuilder 방식
+    // DB::table('articles')->insert([
+    //     'body' => $input['body'],
+    //     'user_id' => Auth::id(),
+    // ]);
+    $article = new Article;
+    $article->body = $input['body'];
+    $article->user_id = Auth::id();
+    $article->save();
     return 'hello';
 });
