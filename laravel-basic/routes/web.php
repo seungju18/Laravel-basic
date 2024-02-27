@@ -54,3 +54,8 @@ Route::post('/articles', function (Request $request) {
     ]);
     return 'hello';
 });
+
+Route::get('articles', function () {
+    $articles = Article::all();
+    return view('articles.index', ['articles' => $articles]);
+});
