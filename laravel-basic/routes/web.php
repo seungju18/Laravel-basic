@@ -48,9 +48,9 @@ Route::post('/articles', function (Request $request) {
     //     'body' => $input['body'],
     //     'user_id' => Auth::id(),
     // ]);
-    $article = new Article;
-    $article->body = $input['body'];
-    $article->user_id = Auth::id();
-    $article->save();
+    Article::create([
+        'body' => $input['body'],
+        'user_id' => Auth::id()
+    ]);
     return 'hello';
 });
