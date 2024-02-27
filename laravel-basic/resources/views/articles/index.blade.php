@@ -11,7 +11,7 @@
                 <p class = "mb-1">{{$loop -> index}}</p>
                 <div class = "background-white border rounded mb-3 p-3">
                     <p>{{ $article->body}}</p>
-                    <p>{{ $article->created_at}}</p>
+                    <p>{{ $article->created_at->diffForHumans()}}</p>
                 </div>
             @endforeach
         </div>
