@@ -7,12 +7,13 @@
     <body>
         <div class = "container p-5">
             <h1 class = "text-2xl mb-5">글목록</h1>
-            <?php foreach($articles as $article):?>
+            @foreach($articles as $article)
+                <p class = "mb-1">{{$loop -> index}}</p>
                 <div class = "background-white border rounded mb-3 p-3">
-                    <p><?php echo $article->body;?></p>
-                    <p><?php echo $article->created_at;?></p>
+                    <p>{{ $article->body}}</p>
+                    <p>{{ $article->created_at}}</p>
                 </div>
-            <?php endforeach;?>
+            @endforeach
         </div>
     </body>
 </html>
