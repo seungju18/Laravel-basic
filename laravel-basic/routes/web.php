@@ -55,7 +55,8 @@ Route::post('/articles', function (Request $request) {
     return 'hello';
 });
 
-Route::get('articles', function () {
-    $articles = Article::all();
+Route::get('articles', function (Request $request) {
+    $perPage = $request->input('per_page', 2);
+    $articles = Article::select('body', 'created_at')->latest()->paginate($perPage);
     return view('articles.index', ['articles' => $articles]);
 });
