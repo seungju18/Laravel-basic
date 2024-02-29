@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/articles/create', function () {
     return view('articles/create');
-});
+})->name('articles.create');
 
 Route::post('/articles', function (Request $request) {
     //비어있지않고, 문자열이고, 255자를 넘으면 안된다는 규칙을 적용
@@ -53,10 +53,15 @@ Route::post('/articles', function (Request $request) {
         'user_id' => Auth::id()
     ]);
     return 'hello';
-});
+})->name('articles.store');
 
 Route::get('articles', function (Request $request) {
     $perPage = $request->input('per_page', 2);
-    $articles = Article::with('user')->select('body', 'user_id', 'created_at')->latest()->paginate($perPage);
+    $articles = Article::with('user')->latest()->paginate($perPage);
     return view('articles.index', ['articles' => $articles]);
-});
+})->name('articles.index');
+
+Route::get('articles/{article}', function ($id) {
+    $article = Article::find($id);
+    return view('articles.show', ['article' => $article]);
+})->name('articles.show');
