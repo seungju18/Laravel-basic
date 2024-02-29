@@ -11,4 +11,7 @@ class Article extends Model
     protected $fillable = [
         "body","user_id"
     ];
+    public function user(){
+        return $this->belongsTo(User::class); //User라는 클래스에 article이 간다
+    }
 }
