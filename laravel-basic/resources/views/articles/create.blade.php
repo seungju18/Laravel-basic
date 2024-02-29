@@ -7,7 +7,7 @@
     <body>
         <div class = "container p-5">
             <h1 class = "text-2xl">글쓰기
-            <form action="/articles" method = "POST" class="mt-3">
+            <form action="{{route('articles.store')}} " method = "POST" class="mt-3">
                 @csrf
                 <input type = "text" name = "body" class = "black w-full mb-2 rounded" value = "{{old('body')}}">
                 @error('body')
