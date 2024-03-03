@@ -15,7 +15,7 @@
                     <p><a href="{{route('articles.show', ['article' => $article->id])}}"/>{{ $article->created_at?->diffForHumans()}}</p>
                     <div class = "flex flex-row">
                         <p class = "mr-1"><a href="{{route('articles.edit', ['article' => $article->id])}}" class = "button rounded bg-blue-500 px-2 py-1 text-xs text-white"/>수정</a>
-                        <form class = "mb-0" action="{{route('articles.delete', ['article' => $article->id])}}" method= "POST">
+                        <form class = "mb-0" action="{{route('articles.destroy', ['article' => $article->id])}}" method= "POST">
                             @csrf
                             @method('DELETE')
                             <button class = "button rounded px-2 py-1 bg-red-500 text-xs text-white">삭제</button>
